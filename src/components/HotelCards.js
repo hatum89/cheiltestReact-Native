@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Alert, StyleSheet } from "react-native";
 import axios from "axios";
 import {
   Card,
@@ -30,13 +30,14 @@ const HotelCards = () => {
   };
 
   return (
-    <View style={{ paddingBottom: 300 }}>
-      <Header
-        placement="center"
-        centerComponent={{ text: "CHEIL", style: { color: "#fff" }}}
-        rightComponent={{ icon: 'home' }}
-      />
-      
+    <View style={{ paddingBottom: 350 }}>
+      <View style={styles.logoBox}>
+        <LottieView
+          source={require("../../assets/lottie/hotelLottie.json")}
+          autoPlay
+          loop
+        />
+      </View>
       <SearchBar
         onChangeText={(val) => {
           handleSearch(val);
@@ -44,7 +45,6 @@ const HotelCards = () => {
         placeholder="Escriba aqui..."
         value={query}
       />
-
       <ScrollView>
         <View>
           {state
@@ -84,5 +84,20 @@ const HotelCards = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  logoBox: {
+    width: 100,
+    height: 100,
+    backgroundColor: "#ffffff",
+    borderRadius: 1000,
+    alignSelf: "center",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    bottom: -3,
+    padding: 3,
+  },
+});
 
 export default HotelCards;
